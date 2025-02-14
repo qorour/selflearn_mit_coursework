@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   post "/sites/:id/visits", to: "sites#create"
   get "/sites", to: "sites#index"
   get "/sites/:id", to: "sites#new"
+  put "/sites/:id", to: "sites#update"
 end

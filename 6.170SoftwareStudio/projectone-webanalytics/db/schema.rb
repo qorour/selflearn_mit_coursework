@@ -14,6 +14,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_062302) do
   create_table "sites", force: :cascade do |t|
     t.integer "identifier"
     t.integer "visit_count"
+    t.integer "total_time_spent", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
