@@ -3,6 +3,8 @@ class SitesController < ApplicationController
     # General advice: if you're only handling API requests in this controller, not too bad to remove "only", but massive security issues if not
     skip_before_action :verify_authenticity_token
     # skip_before_action :verify_authenticity_token, only: [:create]
+    
+    before_action :set_cors_headers
 
     def index
         # Index function returns a simple HTML page listing the identifier numbers of visited sites and the number of visits to each site.
@@ -71,5 +73,18 @@ class SitesController < ApplicationController
         else
             head :not_found
         end
+    end
+
+    # Helper function below sets all CORS headers to manually set, see config/application.rb for more info
+
+    def set_cors_headers
+        headers["Access-Control-Allow-Origin"] = "*"
+        headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+        headers["Access-Control-Allow-Headers"] = "Content-Type, Origin, Referer, User-Agent"
+        headers["Access-Control-Max-Age"] = "3600"
+    end
+
+    def handle_options_request #called in routes to confirm handle options for CORS
+        head :ok, status: 200
     end
 end

@@ -23,5 +23,17 @@ module ProjectoneWebanalytics
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Enabling CORS, allowing specific domains to bypass SOP (Same origin policy, essentially security from diff domain)
+    # AKA, allowing the browser to send cross-origin requests by adding CORS (cross-origin resource sharing) headers to responses.
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'  # Allows all origins
+        resource '*', # and all its resources to access
+          headers: :any, # and all that resources content (for now)
+          methods: [:get, :post, :put, :delete, :options]
+      end
+    end
   end
 end

@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get "/sites", to: "sites#index"
   get "/sites/:id", to: "sites#new"
   put "/sites/:id", to: "sites#update"
+  
+  match "*path", to: "application#handle_options_request", via: [:options] # for CORS handling
 end

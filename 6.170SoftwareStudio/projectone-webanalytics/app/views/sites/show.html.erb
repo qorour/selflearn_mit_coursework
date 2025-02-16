@@ -1,4 +1,34 @@
 <h1>Site Specific Details</h1>
+
 <p><strong>Current Site ID:</strong> <%= @site.identifier %></p>
 <p><strong>Current Visit Count:</strong> <%= @site.visit_count %></p>
-<p><strong>Current Site Average Visit Time Count:</strong> <%= @average_time %></p>
+<p><strong>Current Site Average Visit Time:</strong> <%= @average_time %> seconds</p>
+
+<script>
+  // First, we save the start time when page loaded so can calculate total time
+  let startTime = Date.now();
+
+  // Call function to get total time spent on page when deloaded(refreshed or tabbed out)
+  window.addEventListener("beforeunload", function () {
+    // Getting the CSRF token (needed for rails to accept PUT!)
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Calculate the time spent on the page when the user leaves
+    let endTime = Date.now()
+    let timeSpent = endTime - startTime;
+    // console.log(timeSpent);
+    // Send the PUT request to update site/time. No more needing to call via curl!
+    // Limitations: This will mean the site visit is only counted when you leave the site. Can this be interrupted?
+    // ...and also this keeps the time going from start loaded until its reloaded, doesnt track actual active time on tab...
+    fetch("/sites/<%= @site.identifier %>", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken
+        },
+        body: JSON.stringify({ duration: timeSpent })
+    })
+  });
+</script>
+
+
