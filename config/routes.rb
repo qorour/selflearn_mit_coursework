@@ -11,4 +11,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  #post "/sites/:id/visits", to: "sites#create"
+  post "/shops/:id/new", to: "shops#create"
+  get "/shops", to: "shops#index" #displays all available shops/catalogs
+  get "/shops/:id", to: "shops#load" #displays specific site catalog
+  #put "/sites/:id", to: "sites#update"
+  
+  #match "*path", to: "application#handle_options_request", via: [:options] # for CORS handling
 end
