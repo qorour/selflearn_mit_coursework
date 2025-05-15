@@ -1,2 +1,50 @@
-<h1>Shop Specific Catalog</h1>
-<p><strong>This Shop's ID:</strong> <%= @shop.identifier %></p>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, 
+                   initial-scale=1.0"
+      name="viewport"
+    />
+    <title>SpecificShopPage</title>
+    <style>
+      body {
+        color: #000;
+        font-size: 24px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table td {
+        padding: 6px;
+        background-color: #093d24;
+      }
+
+      .tbody {
+        border-top: 25px solid #0f9d58;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tbody class="tbody">
+        <tr>
+            <h1>Shop Specific Catalog</h1>
+        </tr>
+        <tr>
+            <td>By: Quinn O</td>
+        </tr>
+      </tbody>
+      <tbody class="tbody">
+        <tr>
+            <p><strong>This Shop's ID:</strong> <%= @shop.identifier %></p>
+        </tr>
+        <tr>
+          <td>More details needed here</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

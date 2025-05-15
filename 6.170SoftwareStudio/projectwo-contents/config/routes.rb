@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get "/shops", to: "shops#index" #displays all available shops/catalogs
   get "/shops/:id", to: "shops#load" #displays specific site catalog
   #put "/sites/:id", to: "sites#update"
+
+  post "/users/:id/new", to: "users#create"
+  get "/users", to: "users#index" #displays all available shops/catalogs
+  get "/users/:id", to: "users#load" #displays specific site catalog
+
   
   #match "*path", to: "application#handle_options_request", via: [:options] # for CORS handling
 end
