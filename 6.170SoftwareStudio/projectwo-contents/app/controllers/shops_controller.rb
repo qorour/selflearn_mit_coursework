@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
             end
     end
 
-    def load
+    def show
         #New function that loads a specific site, returns not found if not found
         shop_id = params[:id]
 
